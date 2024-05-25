@@ -8,10 +8,10 @@ class Todo {
         this.id = id
     }
 
-    static async getAllTodos(){
+    static async fetchAllTodos(){
         const result = await db.getDb().collection('todos').find().toArray();
         return result.map(function(todo){
-            return new Todo(todo)
+            return new Todo(todo.task, todo.status, todo._id)
         })
     }
 
@@ -29,3 +29,5 @@ class Todo {
         return db.getDb().collection('todos').deleteOne({_id: new mongodb.ObjectId(this.id)})
     }
 }
+
+module.exports = Todo;
