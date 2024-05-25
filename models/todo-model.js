@@ -11,7 +11,7 @@ class Todo {
     static async fetchAllTodos(){
         const result = await db.getDb().collection('todos').find().toArray();
         return result.map(function(todo){
-            return new Todo(todo.task, todo.status, todo._id)
+            return new Todo(todo.task, todo.status, todo.id)
         })
     }
 
